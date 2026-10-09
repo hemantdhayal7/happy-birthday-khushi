@@ -5,7 +5,7 @@
  * - Canvas Confetti & Floating Ambient Particle System
  * - Interactive 5-Candle Birthday Cake with Blow-out & Relight Mechanics
  * - Sibling Dossier & Interactive Contract Stamp
- * - Polaroid Gallery with Filtering & High-Res Lightbox Modal (Photo + Video)
+ * - Polaroid Gallery with Filtering & High-Res Lightbox Modal (Photo + Video, 10 Curated Items)
  * - Interactive Balloon Popping Game with Sibling Teasing & Wishes
  * - Wax-Sealed Unfolding Big Brother Letter
  * - Interactive 3D Gift Box
@@ -433,7 +433,7 @@ function setupSiblingDossier() {
 }
 
 // ==========================================
-// 5. MEMORY LANE GALLERY & LIGHTBOX (15 ITEMS)
+// 5. MEMORY LANE GALLERY & LIGHTBOX (10 CURATED ITEMS)
 // ==========================================
 const galleryData = [
   {
@@ -445,36 +445,12 @@ const galleryData = [
     category: 'candid'
   },
   {
-    src: 'IMG20221208210044.jpg',
-    type: 'image',
-    title: 'Chic Grace & Elegance (2022)',
-    desc: 'Pairing that grey evening gown with denim jacket—effortless confidence and pure charm.',
-    year: '2022',
-    category: 'festive'
-  },
-  {
     src: 'IMG20230126081644.jpg',
     type: 'image',
     title: 'Desi Tradition & Pride (2023)',
     desc: 'Republic Day morning in a traditional saree. Regal, graceful, and festive.',
     year: '2023',
     category: 'festive'
-  },
-  {
-    src: 'IMG20230313174958.jpg',
-    type: 'image',
-    title: 'Royal Blue & Victory Vibe (2023)',
-    desc: 'The iconic navy saree, the cheerful victory sign, and endless positive energy.',
-    year: '2023',
-    category: 'festive'
-  },
-  {
-    src: 'IMG20240310035205.jpg',
-    type: 'image',
-    title: 'Midnight Peace & Faith (2024)',
-    desc: 'Under the peaceful night sky during the sacred yatra. Eyes filled with quiet serenity and hope.',
-    year: '2024',
-    category: 'cherished'
   },
   {
     src: 'IMG20240614133117.jpg',
@@ -517,22 +493,6 @@ const galleryData = [
     category: 'festive'
   },
   {
-    src: 'IMG20250721182749.jpg',
-    type: 'image',
-    title: 'Sweet Summer Garden Breeze (2025)',
-    desc: 'Pink stripes, glasses on point, and nature providing the backdrop to that sweet sisterly smile.',
-    year: '2025',
-    category: 'candid'
-  },
-  {
-    src: 'IMG20250816132008.jpg',
-    type: 'image',
-    title: 'Breathtaking Horizons Ahead (2025)',
-    desc: 'Fresh hillside air, scenic views, and looking out toward an exciting new chapter with bright dreams.',
-    year: '2025',
-    category: 'cherished'
-  },
-  {
     src: 'khushi_sleeping_beauty.jpg',
     type: 'image',
     title: 'Sleeping Beauty (Phone Glued to Ear!) 😴',
@@ -553,7 +513,7 @@ const galleryData = [
     poster: 'khushi_tractor_poster.jpg',
     type: 'video',
     title: 'Heavy Driver Khushi: Tractor Edition! 🚜💨',
-    desc: 'Move aside Ferrari and Thar! Sister Khushi is steering the red Massey Ferguson with total savage boss vibes. Heavy driver certified!',
+    desc: 'Move aside Ferrari and Thar! Sister Khushi is steering the red Massey Ferguson with total savage boss energy. Heavy driver certified!',
     year: '2026',
     category: 'fun'
   }
