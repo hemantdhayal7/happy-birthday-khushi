@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Khushi! ✨ | A Celebration of Sunshine</title>
+  <meta name="description" content="A special birthday celebration website for Khushi, filled with golden memories, wishes, and love.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Particles Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Audio & Controls Bar -->
+  <div class="floating-controls">
+    <button id="music-toggle-btn" class="control-btn" title="Toggle Birthday Melody" aria-label="Play or pause birthday music">
+      <span class="icon" id="music-icon">🎵</span>
+      <span class="label">Birthday Tune</span>
+      <span class="music-wave" id="music-wave">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <button id="confetti-burst-btn" class="control-btn" title="Shower Confetti" aria-label="Shower confetti">
+      <span class="icon">🎉</span>
+      <span class="label">Celebrate!</span>
+    </button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="header">
+    <nav class="nav-container">
+      <a href="#hero" class="brand-logo">Khushi<span>.bday</span></a>
+      <ul class="nav-links">
+        <li><a href="#cake-section">Make a Wish</a></li>
+        <li><a href="#gallery-section">Memories</a></li>
+        <li><a href="#balloons-section">Pop Wishes</a></li>
+        <li><a href="#letter-section">Letter</a></li>
+        <li><a href="#surprise-section">Gift Box</a></li>
+      </ul>
+      <a href="#cake-section" class="nav-cta-btn">🎂 Celebrate</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-sparkles">
+        <span class="sparkle s1">✨</span>
+        <span class="sparkle s2">🌸</span>
+        <span class="sparkle s3">💖</span>
+        <span class="sparkle s4">✨</span>
+        <span class="sparkle s5">🌷</span>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>Today is all about you! • Happy Birthday</span>
+        </div>
+        <h1 class="hero-title">
+          Happy Birthday, <span class="gradient-text shimmer">Khushi!</span>
+        </h1>
+        <p class="hero-subtitle typewriter" id="typewriter-text">
+          To the one whose smile brings warmth, whose laughter is infectious, and whose presence makes the world infinitely brighter.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#cake-section" class="btn btn-primary">
+            <span>🎂 Blow the Candles</span>
+          </a>
+          <a href="#gallery-section" class="btn btn-secondary">
+            <span>📸 Walk Down Memory Lane</span>
+          </a>
+        </div>
+
+        <!-- Quick Stats / Highlights -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Cherished Moments</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years of Memories</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <span class="stat-number">∞</span >
+            <span class="stat-label">Smiles & Sunshine</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span class="mouse">
+          <span class="wheel"></span>
+        </span>
+        <span class="scroll-text">Scroll to celebrate</span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CAKE & WISH SECTION -->
+    <section id="cake-section" class="cake-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Make A Special Wish</span>
+          <h2 class="section-title">The Birthday Cake Ritual</h2>
+          <p class="section-desc">
+            Close your eyes, make your deepest wish for the year ahead, and click or tap the candles to blow them out!
+          </p>
+        </div>
+
+        <div class="cake-wrapper">
+          <div class="cake-container" id="cake-container">
+            <!-- Sparkles above candles -->
+            <div class="cake-glow" id="cake-glow"></div>
+
+            <!-- Candle Row -->
+            <div class="candles-row" id="candles-row">
+              <div class="candle" data-candle="1">
+                <div class="flame" id="flame-1">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="smoke" id="smoke-1"></div>
+                <div class="wick"></div>
+                <div class="candle-stick candle-stripe-1"></div>
+              </div>
+
+              <div class="candle" data-candle="2">
+                <div class="flame" id="flame-2">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="smoke" id="smoke-2"></div>
+                <div class="wick"></div>
+                <div class="candle-stick candle-stripe-2"></div>
+              </div>
+
+              <div class="candle main-candle" data-candle="3">
+                <div class="flame" id="flame-3">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="smoke" id="smoke-3"></div>
+                <div class="wick"></div>
+                <div class="candle-stick candle-stripe-3"></div>
+              </div>
+
+              <div class="candle" data-candle="4">
+                <div class="flame" id="flame-4">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="smoke" id="smoke-4"></div>
+                <div class="wick"></div>
+                <div class="candle-stick candle-stripe-4"></div>
+              </div>
+
+              <div class="candle" data-candle="5">
+                <div class="flame" id="flame-5">
+                  <div class="flame-inner"></div>
+                </div>
+                <div class="smoke" id="smoke-5"></div>
+                <div class="wick"></div>
+                <div class="candle-stick candle-stripe-5"></div>
+              </div>
+            </div>
+
+            <!-- Multi-Tier Cake -->
+            <div class="cake-tier tier-top">
+              <div class="frosting-drips">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="strawberry-decor">🍓 🌸 🍓 🌸 🍓</div>
+            </div>
+
+            <div class="cake-tier tier-middle">
+              <div class="frosting-drips">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="cake-piping"></div>
+              <div class="cake-text">Happy Birthday Khushi</div>
+            </div>
+
+            <div class="cake-tier tier-base">
+              <div class="frosting-drips">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="cake-pearls">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+
+            <div class="cake-plate"></div>
+            <div class="cake-stand"></div>
+          </div>
+
+          <div class="cake-interaction">
+            <button id="blow-candles-btn" class="blow-btn">
+              <span class="btn-blow-icon">💨</span>
+              <span id="blow-btn-text">Blow Out All Candles</span>
+            </button>
+            <p class="cake-tip">Tip: Tap individual flames or click the button!</p>
+            <div id="wish-success-card" class="wish-success-card hidden">
+              <div class="success-icon">✨ 🎂 💫</div>
+              <h3>May All Your Wishes Come True!</h3>
+              <p>Your wish has been whispered to the universe. May this upcoming year bring you boundless happiness, soaring accomplishments, endless good health, and joyful adventures!</p>
+              <button id="relight-btn" class="relight-btn">🕯️ Relight & Make Another Wish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORY LANE / PHOTO GALLERY SECTION -->
+    <section id="gallery-section" class="gallery-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">2020 — 2025 Retrospective</span>
+          <h2 class="section-title">The Memory Lane</h2>
+          <p class="section-desc">
+            Twelve moments frozen in time, capturing your radiant smile, festive moments, quiet beauty, and the sheer happiness you bring into every room.
+          </p>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="filter-bar">
+          <button class="filter-chip active" data-filter="all">All Memories (12)</button>
+          <button class="filter-chip" data-filter="festive">Festive & Traditional</button>
+          <button class="filter-chip" data-filter="candid">Candid & Casual</button>
+          <button class="filter-chip" data-filter="cherished">Special Moments</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          
+          <!-- Photo 1: 2020 Start -->
+          <article class="polaroid-card" data-category="candid" data-year="2020" data-index="0">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20201114144847.jpg" alt="Khushi in 2020 - Innocent Sweet Smile" loading="lazy">
+              <span class="year-pill">Nov 2020</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Where It All Began</h3>
+              <p>That serene, timeless smile that brightens any room. Some smiles are pure sunshine from day one.</p>
+            </div>
+          </article>
+
+          <!-- Photo 2: 2022 Gown & Denim -->
+          <article class="polaroid-card" data-category="festive" data-year="2022" data-index="1">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20221208210044.jpg" alt="Khushi in Grey Gown and Denim Jacket" loading="lazy">
+              <span class="year-pill">Dec 2022</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Chic Grace & Elegance</h3>
+              <p>Grey gown, denim jacket, and that effortless aura. Walking with pure poise and charm.</p>
+            </div>
+          </article>
+
+          <!-- Photo 3: 2023 Republic Day Saree -->
+          <article class="polaroid-card" data-category="festive" data-year="2023" data-index="2">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20230126081644.jpg" alt="Khushi Republic Day Saree & Red Jacket" loading="lazy">
+              <span class="year-pill">Jan 2023</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Desi Tradition & Pride</h3>
+              <p>Republic Day morning in stunning traditional saree and festive warmth. Regal and radiant.</p>
+            </div>
+          </article>
+
+          <!-- Photo 4: 2023 Navy Saree -->
+          <article class="polaroid-card" data-category="festive" data-year="2023" data-index="3">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20230313174958.jpg" alt="Khushi in Navy Blue Saree with Victory Sign" loading="lazy">
+              <span class="year-pill">Mar 2023</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Royal Blue & Victory Vibe</h3>
+              <p>A masterpiece of elegance! The navy saree, the sweet victory sign, and endless positive energy.</p>
+            </div>
+          </article>
+
+          <!-- Photo 5: 2024 Pilgrimage Yatra -->
+          <article class="polaroid-card" data-category="cherished" data-year="2024" data-index="4">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20240310035205.jpg" alt="Khushi on Midnight Yatra Pilgrimage" loading="lazy">
+              <span class="year-pill">Mar 2024</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Midnight Peace & Faith</h3>
+              <p>Under the quiet midnight stars during the holy yatra. Eyes full of dreams, reverence, and calm.</p>
+            </div>
+          </article>
+
+          <!-- Photo 6: 2024 Late Night Family Screen Time -->
+          <article class="polaroid-card" data-category="candid" data-year="2024" data-index="5">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20240614133117.jpg" alt="Khushi Candid Moment with Family and Laptop" loading="lazy">
+              <span class="year-pill">Jun 2024</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Cozy Laughs & Home Warmth</h3>
+              <p>Unfiltered moments with loved ones, sharing giggles over the screen. The truest kind of happiness.</p>
+            </div>
+          </article>
+
+          <!-- Photo 7: 2024 Stylish Portrait -->
+          <article class="polaroid-card" data-category="candid" data-year="2024" data-index="6">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20240819134805.jpg" alt="Khushi Stylish Portrait on Chair" loading="lazy">
+              <span class="year-pill">Aug 2024</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Modern Poise & Flair</h3>
+              <p>Striking the perfect pose with effortless ease. True style comes naturally when it comes from within.</p>
+            </div>
+          </article>
+
+          <!-- Photo 8: 2024 Hemant & Khushi Drive -->
+          <article class="polaroid-card featured-polaroid" data-category="cherished" data-year="2024" data-index="7">
+            <div class="polaroid-pin">⭐</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20241022070253.jpg" alt="Khushi and Hemant Car Ride Selfie" loading="lazy">
+              <span class="year-pill featured-pill">Oct 2024 • Special</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Favorite Road Trips & Laughter</h3>
+              <p>Morning car rides, playful banters, silly talks, and unforgettable drives together. A golden memory to keep forever!</p>
+            </div>
+          </article>
+
+          <!-- Photo 9: 2024 College Collage NFSU -->
+          <article class="polaroid-card" data-category="cherished" data-year="2024" data-index="8">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20241211193643-COLLAGE.jpg" alt="Khushi Campus Days and NFSU Collage" loading="lazy">
+              <span class="year-pill">Dec 2024</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Campus Stories & Milestones</h3>
+              <p>NFSU days, exams, laughs, friendship, and memories painted across a gallery of moments.</p>
+            </div>
+          </article>
+
+          <!-- Photo 10: 2025 Haldi Yellow Glow -->
+          <article class="polaroid-card" data-category="festive" data-year="2025" data-index="9">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20250201153842.jpg" alt="Khushi Radiant Haldi Celebration in Yellow" loading="lazy">
+              <span class="year-pill">Feb 2025</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Golden Haldi Glow</h3>
+              <p>Bathed in festive marigold yellow, smiling from ear to ear. Pure joy and celebratory radiance.</p>
+            </div>
+          </article>
+
+          <!-- Photo 11: 2025 Garden & Glasses -->
+          <article class="polaroid-card" data-category="candid" data-year="2025" data-index="10">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20250721182749.jpg" alt="Khushi in Pink Kurti with Glasses in Garden" loading="lazy">
+              <span class="year-pill">Jul 2025</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Sweet Summer Garden Breeze</h3>
+              <p>Striped pink kurti, charming spectacles, and peaceful greenery. Simplicity at its most beautiful.</p>
+            </div>
+          </article>
+
+          <!-- Photo 12: 2025 Scenic View Selfie -->
+          <article class="polaroid-card" data-category="cherished" data-year="2025" data-index="11">
+            <div class="polaroid-pin">📍</div>
+            <div class="polaroid-img-box">
+              <img src="IMG20250816132008.jpg" alt="Khushi Mountain Hills Scenic Selfie" loading="lazy">
+              <span class="year-pill">Aug 2025</span>
+              <button class="expand-btn" aria-label="Expand image">🔍</button>
+            </div>
+            <div class="polaroid-caption">
+              <h3>Breathtaking Horizons Ahead</h3>
+              <p>Fresh breeze, scenic hillscape, and looking ahead into an exciting future with hope and sparkle.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BALLOON POP GAME -->
+    <section id="balloons-section" class="balloons-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Fun</span>
+          <h2 class="section-title">Pop the Birthday Balloons!</h2>
+          <p class="section-desc">
+            Each balloon holds a secret compliment or birthday note just for you. Click or tap each balloon to pop it!
+          </p>
+        </div>
+
+        <div class="balloons-arena" id="balloons-arena">
+          
+          <div class="balloon-item b-pink" data-note="Your smile has a magical power to light up even the heaviest days! ✨">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">💖</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+          <div class="balloon-item b-gold" data-note="Your loyalty, kindness, and big heart are genuinely rare treasures! 🌟">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">⭐</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+          <div class="balloon-item b-purple" data-note="May this year open brand new doors to massive success and your biggest dreams! 🚀">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">🔮</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+          <div class="balloon-item b-rose" data-note="You bring so much fun, laughter, and cheer wherever you go! 🌸">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">🌷</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+          <div class="balloon-item b-cyan" data-note="Always stay the genuine, wonderful, and joyful Khushi that everyone loves! 🌈">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">💫</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+          <div class="balloon-item b-coral" data-note="Here's to endless drives, good food, late-night laughs, and no stress! 🍦">
+            <div class="balloon-body">
+              <span class="balloon-shine"></span>
+              <span class="balloon-emoji">🎉</span>
+            </div>
+            <div class="balloon-string"></div>
+            <div class="balloon-label">Pop Me!</div>
+          </div>
+
+        </div>
+
+        <div class="popped-notes-container" id="popped-notes-container">
+          <div class="notes-header">
+            <h3>💌 Revealed Birthday Messages (<span id="popped-count">0</span>/6)</h3>
+            <button id="reset-balloons-btn" class="text-btn">🎈 Reset Balloons</button>
+          </div>
+          <div class="notes-list" id="notes-list">
+            <p class="empty-notes-hint">Tap any floating balloon above to pop it and reveal your secret note!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEARTFELT LETTER SECTION -->
+    <section id="letter-section" class="letter-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">From The Heart</span>
+          <h2 class="section-title">A Special Letter For You</h2>
+          <p class="section-desc">
+            A little keepsake written with warm thoughts, gratitude, and genuine wishes.
+          </p>
+        </div>
+
+        <div class="envelope-area">
+          <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="envelope">
+              <div class="envelope-front">
+                <div class="stamp">
+                  <div class="stamp-inner">👑 BDAY</div>
+                </div>
+                <div class="envelope-recipient">
+                  <span>To: Dearest Khushi</span>
+                  <small>Open on your birthday ✨</small>
+                </div>
+                <div class="wax-seal" id="wax-seal">
+                  <span>❤️</span>
+                </div>
+              </div>
+
+              <!-- Unfolded Letter Parchment -->
+              <div class="letter-paper" id="letter-paper">
+                <div class="letter-inner">
+                  <div class="letter-stamp-top">✨ A Birthday Note ✨</div>
+                  <h3 class="letter-greeting">Dearest Khushi,</h3>
+                  
+                  <p class="letter-body">
+                    On this beautiful day, I just wanted to take a moment to celebrate <strong>you</strong>.
+                  </p>
+                  <p class="letter-body">
+                    Looking back through all these photographs—from 2020 through all the milestones of 2025—one thing stands out above everything else: your contagious warmth, your radiant smile, and the genuine energy you bring to everyone lucky enough to be around you.
+                  </p>
+                  <p class="letter-body">
+                    Whether it's traditional festivities where you light up the room, spontaneous road trips and drives filled with endless banter, college milestones, or the simple everyday moments sharing a laugh over a screen, you make every chapter memorable.
+                  </p>
+                  <p class="letter-body">
+                    As you step into another chapter of life, I wish you:
+                  </p>
+                  <ul class="letter-wishes">
+                    <li>✨ <strong>Unstoppable Success</strong> in everything your heart sets its mind on.</li>
+                    <li>🌸 <strong>Peace & Joy</strong> that stays steady through every turn.</li>
+                    <li>💫 <strong>True Laughter</strong> that makes your cheeks hurt and eyes crinkle.</li>
+                    <li>🌻 <strong>Good Health & Warmth</strong> surrounded by those who cherish you the most.</li>
+                  </ul>
+                  <p class="letter-body">
+                    Never lose that spark, that kindness, and that effortless grace. Keep shining bright, keep dreaming big, and always remember how deeply appreciated you are!
+                  </p>
+                  <div class="letter-signoff">
+                    <p>Wishing you the happiest birthday ever,</p>
+                    <span class="handwritten-sign">With all the love & best wishes,</span>
+                    <span class="signer-name">— Hemant & Family 💖</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="envelope-instruction">
+              <button id="open-envelope-btn" class="open-letter-btn">
+                <span>✉️ Click to Open Letter</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURPRISE GIFT BOX SECTION -->
+    <section id="surprise-section" class="surprise-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">One Last Surprise</span>
+          <h2 class="section-title">The Birthday Gift Box</h2>
+          <p class="section-desc">Tap the shimmering box to unlock your final birthday blessing and surprise!</p>
+        </div>
+
+        <div class="gift-area">
+          <div class="gift-box" id="gift-box">
+            <div class="gift-lid" id="gift-lid">
+              <div class="ribbon-bow">🎀</div>
+            </div>
+            <div class="gift-body">
+              <div class="ribbon-vertical"></div>
+              <div class="ribbon-horizontal"></div>
+              <span class="gift-sparkles-icon">✨</span>
+            </div>
+          </div>
+
+          <div class="gift-message hidden" id="gift-message">
+            <div class="gift-modal-card">
+              <div class="celebration-badge">🎉 Surprise Unlocked! 🎊</div>
+              <h3>To Another Year Of Being Fabulous!</h3>
+              <p>
+                May your birthday be as sweet as cake, as bright as candles, and as unforgettable as the memories we share.
+              </p>
+              <div class="gift-pills">
+                <span>Happiness 🌸</span>
+                <span>Success 🏆</span>
+                <span>Good Health 💖</span>
+                <span>Endless Smiles 🌟</span>
+              </div>
+              <button id="reclose-gift-btn" class="btn btn-secondary">🎁 Close Box</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR HIGH-RES PHOTO VIEWING -->
+  <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">✕</button>
+      <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous Photo">❮</button>
+      <button class="lightbox-nav next" id="lightbox-next" aria-label="Next Photo">❯</button>
+      
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Full view memory">
+      </div>
+      
+      <div class="lightbox-info">
+        <div class="lightbox-counter" id="lightbox-counter">1 / 12</div>
+        <h3 id="lightbox-title">Memory Title</h3>
+        <p id="lightbox-desc">Memory Description</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-decor">🎂 ✨ 💖 🌸 🥂</div>
+      <p class="footer-title">Crafted with endless affection for Khushi's Birthday</p>
+      <p class="footer-subtitle">May your day be filled with warm hugs, delicious cake, and lifelong happiness.</p>
+      <div class="footer-back-to-top">
+        <a href="#hero" class="back-top-link">↑ Back to Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
