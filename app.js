@@ -1,12 +1,13 @@
 /**
- * Happy Birthday Khushi - Interactive Celebration Script
+ * Happy Birthday Khushi - Little Sister Edition Interactive Script
  * Features:
  * - Web Audio API Synthesizer (Happy Birthday Music Box & Sound Effects)
  * - Canvas Confetti & Floating Ambient Particle System
  * - Interactive 5-Candle Birthday Cake with Blow-out & Relight Mechanics
- * - Polaroid Gallery with Filtering & High-Res Lightbox Modal
- * - Interactive Balloon Popping Game with Secret Compliments
- * - Wax-Sealed Unfolding Birthday Letter
+ * - Sibling Dossier & Interactive Contract Stamp
+ * - Polaroid Gallery with Filtering & High-Res Lightbox Modal (Photo + Video)
+ * - Interactive Balloon Popping Game with Sibling Teasing & Wishes
+ * - Wax-Sealed Unfolding Big Brother Letter
  * - Interactive 3D Gift Box
  */
 
@@ -41,7 +42,6 @@ class SoundEngine {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
-    // Warm music box combination: sine + slight triangle overtone
     osc.type = 'sine';
     osc.frequency.setValueAtTime(freq, now);
 
@@ -58,7 +58,6 @@ class SoundEngine {
 
   // Happy Birthday Melody Notes & Beats
   getMelody() {
-    // Note frequencies in Hz
     const notes = {
       C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
       G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25,
@@ -135,13 +134,12 @@ class SoundEngine {
     }, item.pause * 1000);
   }
 
-  // Sound Effect: Candle Extinguished (gentle puff)
+  // Sound Effect: Candle Extinguished
   playExtinguishSound() {
     this.init();
     if (!this.ctx) return;
     const now = this.ctx.currentTime;
     
-    // Pink noise buffer for puff of air
     const bufferSize = this.ctx.sampleRate * 0.25;
     const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
     const data = buffer.getChannelData(0);
@@ -167,7 +165,7 @@ class SoundEngine {
     noise.start(now);
   }
 
-  // Sound Effect: Balloon Pop (crisp snap & resonance)
+  // Sound Effect: Balloon Pop
   playPopSound() {
     this.init();
     if (!this.ctx) return;
@@ -190,11 +188,11 @@ class SoundEngine {
     osc.stop(now + 0.09);
   }
 
-  // Sound Effect: Magical Fanfare (Chimes for celebration & gift open)
+  // Sound Effect: Magical Fanfare
   playFanfare() {
     this.init();
     if (!this.ctx) return;
-    const chord = [523.25, 659.25, 783.99, 1046.50]; // C Major arpeggio
+    const chord = [523.25, 659.25, 783.99, 1046.50];
     chord.forEach((freq, idx) => {
       this.playBellNote(freq, 0.8, idx * 0.1, 0.25);
     });
@@ -298,7 +296,6 @@ class ParticleSystem {
           this.ambientCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           this.ambientCtx.fill();
         } else {
-          // Draw tiny heart
           const s = p.size;
           this.ambientCtx.translate(p.x, p.y);
           this.ambientCtx.beginPath();
@@ -349,7 +346,6 @@ let particles;
 function setupCake() {
   const candles = document.querySelectorAll('.candle');
   const blowBtn = document.getElementById('blow-candles-btn');
-  const blowBtnText = document.getElementById('blow-btn-text');
   const relightBtn = document.getElementById('relight-btn');
   const cakeGlow = document.getElementById('cake-glow');
   const wishCard = document.getElementById('wish-success-card');
@@ -379,7 +375,6 @@ function setupCake() {
       if (wishCard) wishCard.classList.remove('hidden');
       if (blowBtn) blowBtn.style.display = 'none';
 
-      // Celebration burst & fanfare
       sounds.playFanfare();
       const cakeRect = document.getElementById('cake-container').getBoundingClientRect();
       particles.addConfettiBurst(cakeRect.left + cakeRect.width / 2, cakeRect.top + 40, 140);
@@ -390,14 +385,10 @@ function setupCake() {
     }
   }
 
-  // Click individual candles
   candles.forEach(c => {
-    c.addEventListener('click', () => {
-      extinguishCandle(c);
-    });
+    c.addEventListener('click', () => extinguishCandle(c));
   });
 
-  // Blow button click
   if (blowBtn) {
     blowBtn.addEventListener('click', () => {
       candles.forEach((c, idx) => {
@@ -406,7 +397,6 @@ function setupCake() {
     });
   }
 
-  // Relight Candles
   if (relightBtn) {
     relightBtn.addEventListener('click', () => {
       candles.forEach(c => {
@@ -423,11 +413,32 @@ function setupCake() {
 }
 
 // ==========================================
-// 4. MEMORY LANE GALLERY & LIGHTBOX
+// 4. SIBLING DOSSIER CONTRACT STAMP
+// ==========================================
+function setupSiblingDossier() {
+  const signBtn = document.getElementById('sign-contract-btn');
+  const stamp = document.getElementById('contract-stamp');
+
+  if (signBtn && stamp) {
+    signBtn.addEventListener('click', () => {
+      stamp.classList.remove('hidden');
+      sounds.playFanfare();
+      const rect = signBtn.getBoundingClientRect();
+      particles.addConfettiBurst(rect.left + rect.width / 2, rect.top, 70);
+      signBtn.textContent = '🎉 Agreement Signed Forever!';
+      signBtn.disabled = true;
+      signBtn.style.opacity = '0.7';
+    });
+  }
+}
+
+// ==========================================
+// 5. MEMORY LANE GALLERY & LIGHTBOX (15 ITEMS)
 // ==========================================
 const galleryData = [
   {
     src: 'IMG20201114144847.jpg',
+    type: 'image',
     title: 'Where It All Began (2020)',
     desc: 'That gentle, innocent smile that could brighten even the cloudiest day. Pure warmth from the very beginning.',
     year: '2020',
@@ -435,6 +446,7 @@ const galleryData = [
   },
   {
     src: 'IMG20221208210044.jpg',
+    type: 'image',
     title: 'Chic Grace & Elegance (2022)',
     desc: 'Pairing that grey evening gown with denim jacket—effortless confidence and pure charm.',
     year: '2022',
@@ -442,6 +454,7 @@ const galleryData = [
   },
   {
     src: 'IMG20230126081644.jpg',
+    type: 'image',
     title: 'Desi Tradition & Pride (2023)',
     desc: 'Republic Day morning in a traditional saree. Regal, graceful, and festive.',
     year: '2023',
@@ -449,6 +462,7 @@ const galleryData = [
   },
   {
     src: 'IMG20230313174958.jpg',
+    type: 'image',
     title: 'Royal Blue & Victory Vibe (2023)',
     desc: 'The iconic navy saree, the cheerful victory sign, and endless positive energy.',
     year: '2023',
@@ -456,6 +470,7 @@ const galleryData = [
   },
   {
     src: 'IMG20240310035205.jpg',
+    type: 'image',
     title: 'Midnight Peace & Faith (2024)',
     desc: 'Under the peaceful night sky during the sacred yatra. Eyes filled with quiet serenity and hope.',
     year: '2024',
@@ -463,13 +478,15 @@ const galleryData = [
   },
   {
     src: 'IMG20240614133117.jpg',
+    type: 'image',
     title: 'Cozy Laughs & Home Warmth (2024)',
     desc: 'Sharing smiles and late-night talks over the laptop. The heartwarming comfort of true togetherness.',
     year: '2024',
-    category: 'candid'
+    category: 'fun'
   },
   {
     src: 'IMG20240819134805.jpg',
+    type: 'image',
     title: 'Modern Poise & Flair (2024)',
     desc: 'A gorgeous portrait captured in style. Naturally photogenic and effortlessly graceful.',
     year: '2024',
@@ -477,13 +494,15 @@ const galleryData = [
   },
   {
     src: 'IMG20241022070253.jpg',
-    title: 'Favorite Road Trips & Laughter (2024)',
-    desc: 'The fun-filled drives with Hemant! Endless laughs, silly conversations, and one of our favorite memories.',
+    type: 'image',
+    title: 'Brother-Sister Road Trips 🚗 (2024)',
+    desc: 'Car rides with big bro Hemant! Endless arguing, playful banters, silly talks, and one of our favorite memories.',
     year: '2024',
     category: 'cherished'
   },
   {
     src: 'IMG20241211193643-COLLAGE.jpg',
+    type: 'image',
     title: 'Campus Stories & Milestones (2024)',
     desc: 'College memories, NFSU days, friendships, and milestones stitched into a collage of life.',
     year: '2024',
@@ -491,6 +510,7 @@ const galleryData = [
   },
   {
     src: 'IMG20250201153842.jpg',
+    type: 'image',
     title: 'Golden Haldi Glow (2025)',
     desc: 'Glowing radiantly in traditional yellow! A celebration of warmth, smiles, and festive light.',
     year: '2025',
@@ -498,17 +518,44 @@ const galleryData = [
   },
   {
     src: 'IMG20250721182749.jpg',
+    type: 'image',
     title: 'Sweet Summer Garden Breeze (2025)',
-    desc: 'Pink stripes, glasses on point, and nature providing the backdrop to that sweet, gentle smile.',
+    desc: 'Pink stripes, glasses on point, and nature providing the backdrop to that sweet sisterly smile.',
     year: '2025',
     category: 'candid'
   },
   {
     src: 'IMG20250816132008.jpg',
+    type: 'image',
     title: 'Breathtaking Horizons Ahead (2025)',
     desc: 'Fresh hillside air, scenic views, and looking out toward an exciting new chapter with bright dreams.',
     year: '2025',
     category: 'cherished'
+  },
+  {
+    src: 'khushi_sleeping_beauty.jpg',
+    type: 'image',
+    title: 'Sleeping Beauty (Phone Glued to Ear!) 😴',
+    desc: 'Fell asleep mid-scroll with the phone still resting on her cheek! Evidence that being this dramatic is exhausting full-time work.',
+    year: '2026',
+    category: 'fun'
+  },
+  {
+    src: 'khushi_puppy_love.jpg',
+    type: 'image',
+    title: 'Cuteness Overload & Fluffy Puppy 🐶',
+    desc: 'Holding the puppy like her personal baby. Who looks more innocent? Definitely the puppy! But Khushi looks super sweet here.',
+    year: '2026',
+    category: 'candid'
+  },
+  {
+    src: 'khushi_tractor_driver.mp4',
+    poster: 'khushi_tractor_poster.jpg',
+    type: 'video',
+    title: 'Heavy Driver Khushi: Tractor Edition! 🚜💨',
+    desc: 'Move aside Ferrari and Thar! Sister Khushi is steering the red Massey Ferguson with total savage boss vibes. Heavy driver certified!',
+    year: '2026',
+    category: 'fun'
   }
 ];
 
@@ -519,6 +566,7 @@ function setupGallery() {
   const filterBtns = document.querySelectorAll('.filter-chip');
   const modal = document.getElementById('lightbox-modal');
   const modalImg = document.getElementById('lightbox-img');
+  const modalVideo = document.getElementById('lightbox-video');
   const modalTitle = document.getElementById('lightbox-title');
   const modalDesc = document.getElementById('lightbox-desc');
   const modalCounter = document.getElementById('lightbox-counter');
@@ -545,13 +593,33 @@ function setupGallery() {
     });
   });
 
-  // Lightbox Open
+  // Lightbox Open (supports Image & Video)
   function openLightbox(index) {
     activeLightboxIndex = index;
     const item = galleryData[index];
     if (!item) return;
 
-    modalImg.src = item.src;
+    if (item.type === 'video') {
+      if (modalImg) modalImg.classList.add('hidden');
+      if (modalVideo) {
+        modalVideo.classList.remove('hidden');
+        modalVideo.src = item.src;
+        modalVideo.poster = item.poster || '';
+        modalVideo.currentTime = 0;
+        modalVideo.play().catch(() => {});
+      }
+    } else {
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.src = '';
+        modalVideo.classList.add('hidden');
+      }
+      if (modalImg) {
+        modalImg.classList.remove('hidden');
+        modalImg.src = item.src;
+      }
+    }
+
     modalTitle.textContent = item.title;
     modalDesc.textContent = item.desc;
     modalCounter.textContent = `${index + 1} / ${galleryData.length}`;
@@ -562,6 +630,10 @@ function setupGallery() {
   }
 
   function closeLightbox() {
+    if (modalVideo) {
+      modalVideo.pause();
+      modalVideo.src = '';
+    }
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -598,7 +670,7 @@ function setupGallery() {
 }
 
 // ==========================================
-// 5. BALLOON POP GAME
+// 6. BALLOON POP GAME
 // ==========================================
 function setupBalloons() {
   const balloons = document.querySelectorAll('.balloon-item');
@@ -607,8 +679,8 @@ function setupBalloons() {
   const resetBtn = document.getElementById('reset-balloons-btn');
   let poppedCount = 0;
 
-  balloons.forEach((b, idx) => {
-    b.addEventListener('click', (e) => {
+  balloons.forEach((b) => {
+    b.addEventListener('click', () => {
       if (b.classList.contains('popped')) return;
 
       b.classList.add('popped');
@@ -617,15 +689,12 @@ function setupBalloons() {
 
       sounds.playPopSound();
 
-      // Confetti burst right at balloon coordinates
       const rect = b.getBoundingClientRect();
       particles.addConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 45);
 
-      // Remove hint if present
       const hint = notesList.querySelector('.empty-notes-hint');
       if (hint) hint.remove();
 
-      // Add revealed note
       const noteText = b.getAttribute('data-note');
       const noteCard = document.createElement('div');
       noteCard.className = 'revealed-note-card';
@@ -635,7 +704,6 @@ function setupBalloons() {
       `;
       notesList.prepend(noteCard);
 
-      // If all popped
       if (poppedCount === balloons.length) {
         setTimeout(() => {
           sounds.playFanfare();
@@ -657,7 +725,7 @@ function setupBalloons() {
 }
 
 // ==========================================
-// 6. ENVELOPE & LETTER UNFOLDING
+// 7. ENVELOPE & LETTER UNFOLDING
 // ==========================================
 function setupLetter() {
   const envelope = document.getElementById('envelope');
@@ -672,7 +740,7 @@ function setupLetter() {
       openBtn.innerHTML = '<span>✉️ Fold Letter Back</span>';
       particles.addConfettiBurst(window.innerWidth / 2, window.innerHeight * 0.6, 60);
     } else {
-      openBtn.innerHTML = '<span>✉️ Click to Open Letter</span>';
+      openBtn.innerHTML = '<span>✉️ Click to Open Brother\'s Letter</span>';
     }
   }
 
@@ -681,7 +749,7 @@ function setupLetter() {
 }
 
 // ==========================================
-// 7. SURPRISE GIFT BOX
+// 8. SURPRISE GIFT BOX
 // ==========================================
 function setupGiftBox() {
   const box = document.getElementById('gift-box');
@@ -711,20 +779,18 @@ function setupGiftBox() {
 }
 
 // ==========================================
-// 8. FLOATING CONTROLS & INIT
+// 9. CONTROLS & INIT
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particles
   particles = new ParticleSystem();
 
-  // Setup interactive components
   setupCake();
+  setupSiblingDossier();
   setupGallery();
   setupBalloons();
   setupLetter();
   setupGiftBox();
 
-  // Music toggle button
   const musicBtn = document.getElementById('music-toggle-btn');
   const musicIcon = document.getElementById('music-icon');
   if (musicBtn) {
@@ -741,7 +807,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Confetti burst button
   const confettiBtn = document.getElementById('confetti-burst-btn');
   if (confettiBtn) {
     confettiBtn.addEventListener('click', () => {
